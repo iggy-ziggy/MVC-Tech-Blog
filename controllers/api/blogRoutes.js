@@ -1,29 +1,14 @@
 const router = require('express').Router();
-const { Blog, User, Comment } = require('../../models');
+const { Blog } = require('../../models');
 const withAuth = require('../../utils/auth');
 
-
-router.get('/', async (req, res) => {
-  const blogData = await Blog.findAll({
-    include: [
-      {
-        model: User,
-        attributes: { exclude: ['password'] },
-      }, 
-      {
-        model: Comment,
-        include: [
-          {
-            model: User,
-            attributes: { exclude: ['password'] },
-          },
-        ],
-      },
-    ],
-  });
+// get all blogs
+router.get('/', withAuth, async (req, res) => {
+  const blogData = await Blog.findAll();
   res.status(200).json(blogData);
 });
 
+// create new blog
 router.post('/', withAuth, async (req, res) => {
   try {
     const newBlog = await Blog.create({
@@ -37,6 +22,7 @@ router.post('/', withAuth, async (req, res) => {
   }
 });
 
+// delete specific blog
 router.delete('/:id', withAuth, async (req, res) => {
   try {
     const blogData = await Blog.destroy({

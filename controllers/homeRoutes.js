@@ -9,15 +9,6 @@ router.get('/', withAuth, async (req, res) => {
         {
           model: User,
           attributes: { exclude: ['password'] },
-        }, 
-        {
-          model: Comment,
-          include: [
-            {
-              model: User,
-              attributes: { exclude: ['password'] },
-            },
-          ],
         },
       ],
     });
@@ -65,24 +56,29 @@ router.get('/blogs/:id', withAuth, async (req, res) => {
 });
 
 // Use withAuth middleware to prevent access to route
-// router.get('/profile', withAuth, async (req, res) => {
-//   try {
-//     // Find the logged in user based on the session ID
-//     const userData = await User.findByPk(req.session.user_id, {
-//       attributes: { exclude: ['password'] },
-//       include: [{ model: Project }],
-//     });
+router.get('/profile', withAuth, async (req, res) => {
+  try {
+    // Find the logged in user based on the session ID
+    const userData = await User.findByPk(req.session.user_id, {
+      attributes: { exclude: ['password'] },
+      include: [{ model: Blog }],
+    });
 
-//     const user = userData.get({ plain: true });
+    const user = userData.get({ plain: true });
 
-//     res.render('profile', {
-//       ...user,
-//       logged_in: true
-//     });
-//   } catch (err) {
-//     res.status(500).json(err);
-//   }
-// });
+    res.render('profile', {
+      ...user,
+      logged_in: true
+    });
+  } catch (err) {
+    res.status(500).json(err);
+  }
+});
+
+router.get('/allblogs', async (req, res) => {
+  const blogData = await Blog.findAll()
+  res.status(200).json(blogData);
+});
 
 router.get('/login', (req, res) => {
   if (req.session.logged_in) {
