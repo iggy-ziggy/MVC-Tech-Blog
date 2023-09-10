@@ -76,7 +76,9 @@ router.get('/profile', withAuth, async (req, res) => {
 });
 
 router.get('/allblogs', async (req, res) => {
-  const blogData = await Blog.findAll()
+  const blogData = await Blog.findAll({
+    include: [{model: Comment}],
+  });
   res.status(200).json(blogData);
 });
 
