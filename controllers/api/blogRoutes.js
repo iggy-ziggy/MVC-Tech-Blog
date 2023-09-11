@@ -8,9 +8,7 @@ router.get('/', withAuth, async (req, res) => {
   res.status(200).json(blogData);
 });
 
-// router.get('/update/:id', withAuth, async (req, res) => {
-//   res.render('update');
-// });
+// render update page with existing text
 router.get('/update/:id', async (req, res) => {
   try {
     const blogData = await Blog.findByPk(req.params.id);
@@ -64,9 +62,6 @@ router.delete('/:id', withAuth, async (req, res) => {
 // update specific blog
 router.put('/update/:id', withAuth, async (req, res) => {
   try {
-    // const updatedData = {
-    //       ...req.body,
-    //     };
     const update = await Blog.update(req.body, {
       where: {
         id: req.params.id,
