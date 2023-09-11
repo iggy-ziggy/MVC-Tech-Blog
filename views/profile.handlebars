@@ -33,7 +33,10 @@
         <h4><a href="/blogs/{{blog.id}}">{{blog.title}}</a></h4>
       </div>
       <div class="col-md-4">
-        <button class="btn btn-sm btn-danger" data-id="{{blog.id}}">DELETE</button>
+        <a href="/api/blogs/update/{{blog.id}}"><button class="btn btn-sm btn-info upd-btn" data-id="{{blog.id}}">UPDATE</button></a>
+      </div>
+      <div class="col-md-4">
+        <button class="btn btn-sm btn-danger del-btn" data-id="{{blog.id}}">DELETE</button>
       </div>
     </div>
     {{/each}}

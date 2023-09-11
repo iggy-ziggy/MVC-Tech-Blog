@@ -8,6 +8,10 @@ router.get('/', withAuth, async (req, res) => {
   res.status(200).json(blogData);
 });
 
+router.get('/update/:id', withAuth, async (req, res) => {
+  res.render('update');
+})
+
 // create new blog
 router.post('/', withAuth, async (req, res) => {
   try {
@@ -41,6 +45,45 @@ router.delete('/:id', withAuth, async (req, res) => {
   } catch (err) {
     res.status(500).json(err);
   }
+});
+
+// update specific blog
+router.put('/update/:id', withAuth, async (req, res) => {
+  try {
+    const updatedData = {
+          ...req.body,
+        };
+    const update = await Blog.update(updatedData, {
+      where: {
+        id: req.params.id,
+        user_id: req.session.user_id,
+      }
+    });
+    res.status(200).json(update);
+  } catch (err) {
+    res.status(500).json(err);
+  }
+  // try {
+  //   const updatedData = {
+  //     ...req.body,
+  //   };
+
+  //   const [affectedRows] = await Blog.update(updatedData, {
+  //     where: {
+  //       id: req.params.id,
+  //       user_id: req.session.user_id,
+  //     },
+  //   });
+
+  //   if (affectedRows === 0) {
+  //     res.status(404).json({ message: 'No blog post found with this id!' });
+  //     return;
+  //   }
+
+  //   res.status(200).json({ message: 'Blog post updated successfully' });
+  // } catch (err) {
+  //   res.status(500).json(err);
+  // }
 });
 
 
