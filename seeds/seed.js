@@ -15,10 +15,23 @@ const seedDatabase = async () => {
   });
   console.log('\n----- USERS SEEDED -----\n');
 
-  const blogs = await Blog.bulkCreate(blogData);
+  // const blogs = await Blog.bulkCreate(blogData);
+  // console.log('\n----- BLOGS SEEDED -----\n');
+
+  // const comments = await Comment.bulkCreate(commentData);
+  // console.log('\n----- COMMENTS SEEDED -----\n');
+  for (const post of blogData) {
+    await Blog.create({
+      ...post,
+    });
+  }
   console.log('\n----- BLOGS SEEDED -----\n');
 
-  const comments = await Comment.bulkCreate(commentData);
+  for (const comment of commentData) {
+    await Comment.create({
+      ...comment,
+    });
+  }
   console.log('\n----- COMMENTS SEEDED -----\n');
 
   process.exit(0);

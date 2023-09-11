@@ -23,12 +23,15 @@ header, .project:not(:last-child) {
   margin-left: -5px;
 }
 
+#blog-container {
+  margin-bottom: 50px;
+}
+
 #blog-post {
   margin-bottom: 50px;
 }
 
 #login-alert {
-  margin-top: 50px;
   font-size: 20px;
   margin: auto;
   padding: 10px;
@@ -47,10 +50,6 @@ header, .project:not(:last-child) {
   margin: auto;
   padding: 10px;
 }
-
-/* #comment-card-name {
- font-size: 18px;
-} */
 
 #comment-card-date {
   font-size: 15px;

@@ -2,6 +2,7 @@ const router = require('express').Router();
 const { Blog, User, Comment } = require('../models');
 const withAuth = require('../utils/auth');
 
+// render homepage with existing blogs
 router.get('/', async (req, res) => {
   try {
     const blogData = await Blog.findAll({
@@ -24,6 +25,7 @@ router.get('/', async (req, res) => {
   }
 });
 
+// get one blog
 router.get('/blogs/:id', async (req, res) => {
   try {
     const blogData = await Blog.findByPk(req.params.id, {
@@ -55,10 +57,9 @@ router.get('/blogs/:id', async (req, res) => {
   }
 });
 
-// Use withAuth middleware to prevent access to route
+// render profile
 router.get('/profile', withAuth, async (req, res) => {
   try {
-    // Find the logged in user based on the session ID
     const userData = await User.findByPk(req.session.user_id, {
       attributes: { exclude: ['password'] },
       include: [{ model: Blog }],
@@ -75,13 +76,7 @@ router.get('/profile', withAuth, async (req, res) => {
   }
 });
 
-router.get('/allblogs', async (req, res) => {
-  const blogData = await Blog.findAll({
-    include: [{model: Comment}],
-  });
-  res.status(200).json(blogData);
-});
-
+// redirect to login
 router.get('/login', (req, res) => {
   if (req.session.logged_in) {
     res.redirect('/');

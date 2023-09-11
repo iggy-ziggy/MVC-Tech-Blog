@@ -8,6 +8,22 @@ router.get('/', withAuth, async (req, res) => {
   res.status(200).json(blogData);
 });
 
+// render update page with existing text
+router.get('/update/:id', async (req, res) => {
+  try {
+    const blogData = await Blog.findByPk(req.params.id);
+
+    const blog = blogData.get({ plain: true });
+
+    res.render('update', {
+      ...blog,
+      logged_in: req.session.logged_in,
+    });
+  } catch (err) {
+    res.status(500).json(err);
+  }
+});
+
 // create new blog
 router.post('/', withAuth, async (req, res) => {
   try {
@@ -38,6 +54,21 @@ router.delete('/:id', withAuth, async (req, res) => {
     }
 
     res.status(200).json(blogData);
+  } catch (err) {
+    res.status(500).json(err);
+  }
+});
+
+// update specific blog
+router.put('/update/:id', withAuth, async (req, res) => {
+  try {
+    const update = await Blog.update(req.body, {
+      where: {
+        id: req.params.id,
+        user_id: req.session.user_id,
+      }
+    });
+    res.status(200).json(update);
   } catch (err) {
     res.status(500).json(err);
   }
