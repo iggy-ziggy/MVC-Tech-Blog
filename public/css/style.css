@@ -1,0 +1,56 @@
+header, .project:not(:last-child) {
+  border-bottom: 1px solid #ccc;
+}
+
+.no-button {
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  color: #1b89bc;
+  text-decoration: none;
+  font-size: 100%;
+}
+
+.no-button:hover {
+  color: #065b83;
+  text-decoration: underline;
+}
+
+.dollar-amount {
+  color: #056605;
+  font-weight: bold;
+  margin-left: -5px;
+}
+
+#blog-container {
+  margin-bottom: 50px;
+}
+
+#blog-post {
+  margin-bottom: 50px;
+}
+
+#login-alert {
+  font-size: 20px;
+  margin: auto;
+  padding: 10px;
+  background-color: lightgray;
+  color: #1b89bc;
+  border-radius: 5px;
+}
+
+#comment-block {
+  margin-top: 75px;
+}
+
+.comment-card {
+  border-top: 2px solid black;
+  max-width: 50%;
+  margin: auto;
+  padding: 10px;
+}
+
+#comment-card-date {
+  font-size: 15px;
+}

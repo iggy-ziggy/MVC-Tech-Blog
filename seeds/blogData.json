@@ -1,0 +1,17 @@
+[
+  {
+    "title": "Blog #1",
+    "text": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Obcaecati molestias veniam autem, tempora itaque cumque aspernatur, totam repellat magni harum iste perferendis.",
+    "user_id": 1
+  },
+  {
+    "title": "Blog #2",
+    "text": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Obcaecati molestias veniam autem, tempora itaque cumque aspernatur, totam repellat magni harum iste perferendis.",
+    "user_id": 2
+  },
+  {
+    "title": "Blog #3",
+    "text": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Obcaecati molestias veniam autem, tempora itaque cumque aspernatur, totam repellat magni harum iste perferendis.",
+    "user_id": 3
+  }
+]
