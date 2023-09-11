@@ -1,0 +1,17 @@
+[
+    {
+        "text": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Suscipit, eaque.",
+        "user_id": 1,
+        "blog_id": 2
+    },
+    {
+        "text": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Suscipit, eaque.",
+        "user_id": 2,
+        "blog_id": 3
+    },
+    {
+        "text": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Suscipit, eaque.",
+        "user_id": 3,
+        "blog_id": 1
+    }
+]
